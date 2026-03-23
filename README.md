@@ -135,14 +135,3 @@ Returns a JSON payload with all current system metrics:
 | Fonts     | Share Tech Mono, Rajdhani         |
 
 ---
-
-## 💡 Possible Extensions
-
-- [ ] Add historical charts using Chart.js
-- [ ] Alert thresholds (e.g. email if CPU > 90%)
-- [ ] Process table — top N processes by CPU/RAM
-- [ ] Multi-machine monitoring over a local network
-- [ ] Authentication layer (basic auth or session tokens)
-- [ ] Docker container support
-
----
