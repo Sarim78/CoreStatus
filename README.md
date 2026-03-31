@@ -85,46 +85,6 @@ sysmon/
 
 ---
 
-## 🔌 API Endpoint
-
-The backend exposes one endpoint:
-
-**`GET /api/stats`**
-
-Returns a JSON payload with all current system metrics:
-
-```json
-{
-  "cpu": {
-    "total": 14.2,
-    "per_core": [10.0, 18.4, 12.1, 16.0],
-    "count": 4
-  },
-  "ram": {
-    "percent": 62.5,
-    "used_gb": 10.0,
-    "total_gb": 16.0,
-    "available_gb": 6.0
-  },
-  "disk": {
-    "percent": 55.3,
-    "used_gb": 275.0,
-    "total_gb": 500.0,
-    "free_gb": 225.0
-  },
-  "network": {
-    "bytes_sent_mb": 1024.5,
-    "bytes_recv_mb": 3210.2
-  },
-  "system": {
-    "uptime": "1 day, 4:32:10",
-    "timestamp": "14:22:05"
-  }
-}
-```
-
----
-
 ## 🛠️ Tech Stack
 
 | Layer     | Tech                              |
