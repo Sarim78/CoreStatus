@@ -6,28 +6,53 @@ app = Flask(__name__)
 
 # Returns CPU usage as total percentage and per-core breakdown
 def get_cpu_stats():
-    
-    pass
+    return {
+        "total": psutil.cpu_percent(interval=1),
+        "per_core": psutil.cpu_percent(interval=1, percpu=True),
+        "count": psutil.cpu_count()
+    }
 
 # Returns RAM usage including used, total, and available in GB
 def get_ram_stats():
+    ram = psutil.virtual_memory()
 
-    pass
+    return {
+        "percent": ram.percent,
+        "used_gb": round(ram.used / (1024 ** 3), 1),
+        "total_gb": round(ram.total / (1024 ** 3), 1),
+        "available_gb": round(ram.available / (1024 ** 3), 1)
+    }
 
 # Returns disk usage for root partition including used, free, and total in GB
 def get_disk_stats():
+    disk = psutil.disk_usage('/')
 
-    pass
+    return {
+        "percent": disk.percent,
+        "used_gb": round(disk.used / (1024 ** 3), 1),
+        "total_gb": round(disk.total / (1024 ** 3), 1),
+        "free_gb": round(disk.free / (1024 ** 3), 1)
+    }
 
 # Returns network I/O including total bytes sent and received in MB
 def get_network_stats():
+    net = psutil.net_io_counters()
 
-    pass
+    return {
+        "bytes_sent_mb": round(net.bytes_sent / (1024 ** 2), 1),
+        "bytes_recv_mb": round(net.bytes_recv / (1024 ** 2), 1)
+    }
 
 # Returns system uptime and current timestamp
 def get_system_stats():
-
-    pass
+    boot_time = psutil.boot_time()
+    
+    uptime_seconds = datetime.datetime.now().timestamp() - boot_time
+    uptime = str(datetime.timedelta(seconds=int(uptime_seconds)))
+    return {
+        "uptime": uptime,
+        "timestamp": datetime.datetime.now().strftime("%H:%M:%S")
+    }
 
 # Bundles all stat functions into one dictionary to send to the frontend
 def get_all_stats():
